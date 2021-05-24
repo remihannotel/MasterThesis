@@ -36,8 +36,8 @@ using Plots
 plot(Kgrid, f_K,label = "Capital")  # Plotting f(K)
 plot!([0], seriestype="hline", label="f(K) = 0")  # Plotting f(K) = 0
 
-# We see on the graph that f(K) = 0 when K ≈ 0.15 
-plot!([0.15], seriestype="vline", label="f(0.15)")
+# We see on the graph that f(K) = 0 when K ≈ 0.2
+plot!([0.1968], seriestype="vline", label="f(0.1968)")
 
 # Solving the model 
 using Roots
@@ -73,3 +73,8 @@ function damage(T)
 	damages = 1 - 1/(1+(κ1*T)^2 + (κ2*T)^6.754) 
 	return damages 
 end  
+
+emissions_sector = energy_emissions(Kstar) # 0.614 
+carbon = atmos_concentration(emissions_sector) #1056.17 
+difftemperature = varpreindustemps(carbon) #2.59
+damage1 = damage(difftemperature) #1.87%
